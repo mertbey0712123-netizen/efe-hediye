@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Senin İçin ❤️</title>
+<title>Efe'den Rabia'ya ❤️</title>
+
 <style>
 body {
     margin: 0;
-    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #ff6b81, #ff9a9e, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, #ff6b81, #ff9a9e, #fad0c4, #ffdde1);
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    height: 100vh;
     color: white;
+    text-align: center;
 }
 
 @keyframes gradient {
@@ -28,54 +30,98 @@ body {
 .card {
     background: rgba(255,255,255,0.15);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 25px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 40px rgba(0,0,0,0.3);
     max-width: 500px;
+    position: relative;
+    z-index: 2;
 }
 
 button {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 20px;
+    border-radius: 25px;
     background: white;
     color: #ff6b81;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-#surprise {
+button:hover {
+    transform: scale(1.1);
+}
+
+#poem {
     display: none;
     margin-top: 20px;
-    font-size: 18px;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.heart {
+    position: absolute;
+    bottom: -10px;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100vh);}
 }
 </style>
 </head>
+
 <body>
 
-<div class="card">
-    <h1>Bu Sayfa Sadece Senin İçin 💖</h1>
+<div class="card" id="intro">
+    <h1>Rabia... 💖</h1>
+    <p>Hazır mısın?</p>
+    <button onclick="start()">Hazırım ✨</button>
+</div>
+
+<div class="card" id="poem">
+    <h1>Efe'den Rabia'ya 💌</h1>
     <p>
-        Hayat bazen zor olabilir... <br><br>
-        Ama sen yanımdayken her şey daha kolay. <br><br>
-        Gülüşün kalbime huzur, <br>
-        Varlığın dünyama anlam. <br><br>
-        İyi ki varsın. 💌
+        Hayat bazen karmaşık olabilir... <br><br>
+        Ama senin gülüşün her şeyi sadeleştiriyor. <br><br>
+        Kalbim bazen susar, <br>
+        Ama seni düşündüğümde hep konuşur. <br><br>
+        Belki bu sadece küçük bir sayfa, <br>
+        Ama hislerim küçük değil. <br><br>
+        İyi ki varsın.
     </p>
-
-    <button onclick="showSurprise()">Sürprizi Aç 🎁</button>
-
-    <div id="surprise">
-        Seni çok seviyorum ❤️
-    </div>
 </div>
 
 <script>
-function showSurprise() {
-    document.getElementById("surprise").style.display = "block";
+function start() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("poem").style.display = "block";
 }
+
+setInterval(function(){
+    let heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 300);
 </script>
 
 </body>
 </html>
+
+
